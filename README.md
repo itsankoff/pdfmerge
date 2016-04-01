@@ -2,4 +2,4 @@
 
 ### pdfmerge
 * pip install -r requirements.txt
-* python3 merge.py <dir> <outputfile>.pdf
+* enter "python3 merge.py" to see usage
