@@ -1,4 +1,4 @@
-from PDF import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader, PdfFileWriter
 import os
 import sys
 
@@ -9,12 +9,12 @@ def merge(input_dir, output_file):
     inputs = sorted(os.listdir(input_dir))
     for name in inputs:
         if name.endswith('pdf'):
-            path = input_dir + name
-            in_file = PdfFileReader(open(path, 'rb'))
-            [output.addPage(in_file.getPage(pagenum))
-             for pagenum in range(in_file.numPages)]
+            filepath = os.path.join(input_dir, name)
+            in_file = PdfFileReader(filepath)
+            [output.addPage(in_file.getPage(pagenum)) for pagenum in range(in_file.getNumPages())]
 
-    output.write(open(output_file, 'wb'))
+    with open(output_file, 'wb') as out_file:
+        output.write(out_file)
 
 
 def main():
